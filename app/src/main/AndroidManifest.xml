@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubprojectMA14CTTTanTriToanLenHuyN5">
         <activity
+            android:name=".Screen_FoodDetail"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
