@@ -13,6 +13,9 @@
             android:name=".ScreenCheckout"
             android:exported="true" />
         <activity
+            android:name=".Screen_FoodDetail"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
