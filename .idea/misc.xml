@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android_Project_Workspace/BTL_Food_App/Food/app/src/main/res/drawable/custom_btn_checkout.xml" value="0.19583333333333333" />
-        <entry key="..\:/Android_Project_Workspace/BTL_Food_App/Food/app/src/main/res/layout/activity_main.xml" value="0.10099637681159421" />
-        <entry key="..\:/Android_Project_Workspace/BTL_Food_App/Food/app/src/main/res/layout/activity_screen_checkout.xml" value="0.335" />
-        <entry key="..\:/Android_Project_Workspace/BTL_Food_App/Food/app/src/main/res/layout/rv_itemcart.xml" value="0.25" />
+        <entry key="..\:/TanCB/Nam IV/HKI/Lap trinh thiet bi di dong nang cao/ThucHanh/SubprojectMA14CTTTanTriToanLenHuyN5/app/src/main/res/drawable/btn_login.xml" value="0.2611111111111111" />
+        <entry key="..\:/TanCB/Nam IV/HKI/Lap trinh thiet bi di dong nang cao/ThucHanh/SubprojectMA14CTTTanTriToanLenHuyN5/app/src/main/res/drawable/ic_google.xml" value="0.2611111111111111" />
+        <entry key="..\:/TanCB/Nam IV/HKI/Lap trinh thiet bi di dong nang cao/ThucHanh/SubprojectMA14CTTTanTriToanLenHuyN5/app/src/main/res/drawable/ic_home.xml" value="0.2611111111111111" />
+        <entry key="..\:/TanCB/Nam IV/HKI/Lap trinh thiet bi di dong nang cao/ThucHanh/SubprojectMA14CTTTanTriToanLenHuyN5/app/src/main/res/drawable/view.xml" value="0.2703125" />
+        <entry key="..\:/TanCB/Nam IV/HKI/Lap trinh thiet bi di dong nang cao/ThucHanh/SubprojectMA14CTTTanTriToanLenHuyN5/app/src/main/res/drawable/view_login.xml" value="0.2611111111111111" />
+        <entry key="..\:/TanCB/Nam IV/HKI/Lap trinh thiet bi di dong nang cao/ThucHanh/SubprojectMA14CTTTanTriToanLenHuyN5/app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>
   </component>
