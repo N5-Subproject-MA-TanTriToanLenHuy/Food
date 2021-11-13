@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Screen_FoodDetail">
+
+    <ImageView
+        android:id="@+id/imgFoodDetail"
+        android:layout_width="409dp"
+        android:layout_height="508dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/imagefooddetail" />
+
+    <ImageView
+        android:id="@+id/bgBottom"
+        android:layout_width="417dp"
+        android:layout_height="470dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
+        app:layout_constraintVertical_bias="0.712"
+        app:srcCompat="@drawable/bggonebottom" />
+
+    <ImageView
+        android:id="@+id/bgbottomTranslucent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgBottom"
+        app:srcCompat="@drawable/bgbottom" />
+
+    <Button
+        android:id="@+id/ButtonBuyNow"
+        android:layout_width="212dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttonbuynow"
+        android:text="Buy Now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="@+id/bgBottom"
+        app:layout_constraintTop_toBottomOf="@+id/textDetail" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="The BTS Meal"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgbottomTranslucent" />
+
+    <TextView
+        android:id="@+id/textBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From McDonald's"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textName"
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textDetail"
+        android:layout_width="352dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="16dp"
+
+        android:gravity="center"
+        android:text="With only one week left to get the BTS Meal, new limited-time sauces to try and the virtual portrait series only in the app, there’s never been a better reason to keep coming back for more McNuggets.  The BTS Meal has you (and your McNuggets) covered with new limited-time dipping sauces picked by BTS and inspired by McDonald’s South Korea. Add a little kick to your meal, whether you want the Sweet Chili Sauce or the Cajun Sauce. "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textBrand"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/textBrand"
+        app:layout_constraintTop_toBottomOf="@+id/textBrand" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:background="@drawable/bg_detail"
+        app:layout_constraintBottom_toBottomOf="@+id/textDetail"
+        app:layout_constraintEnd_toEndOf="@+id/textDetail"
+        app:layout_constraintStart_toStartOf="@+id/textDetail"
+        app:layout_constraintTop_toTopOf="@+id/textDetail" />
+
+    <TextView
+        android:id="@+id/textReadMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:text="Read More"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textDetail"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/textDetail"
+        app:layout_constraintTop_toTopOf="@+id/textDetail" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="41dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="@+id/imgFoodDetail"
+        app:layout_constraintStart_toStartOf="@+id/imgFoodDetail"
+        app:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
+        app:srcCompat="@drawable/arrow" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
