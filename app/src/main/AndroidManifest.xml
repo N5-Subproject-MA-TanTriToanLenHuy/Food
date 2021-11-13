@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubprojectMA14CTTTanTriToanLenHuyN5">
         <activity
-            android:name=".ScreenCheckout"
+            android:name=".Screen_Checkout"
             android:exported="true" />
         <activity
             android:name=".Screen_FoodDetail"
