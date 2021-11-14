@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imv_backgound"
+        android:layout_width="170dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="#FFFCFC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/thebtsmeal" />
+
+    <ImageView
+        android:id="@+id/imv_food"
+        android:layout_width="154dp"
+        android:layout_height="142dp"
+        app:layout_constraintEnd_toEndOf="@+id/imv_backgound"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="@+id/imv_backgound"
+        app:layout_constraintTop_toTopOf="@+id/imv_backgound"
+        app:srcCompat="@drawable/pic" />
+
+    <TextView
+        android:id="@+id/tv_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="From MCDonald's"
+        android:textColor="#939090"
+        app:layout_constraintEnd_toEndOf="@+id/imv_backgound"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/imv_backgound"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="106dp"
+        android:layout_height="25dp"
+        android:text="The BTS Meal"
+        android:textColor="#040404"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imv_backgound"
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintStart_toStartOf="@+id/imv_backgound"
+        app:layout_constraintTop_toBottomOf="@+id/imv_food" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
