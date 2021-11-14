@@ -11,6 +11,9 @@
         android:theme="@style/Theme.SubprojectMA14CTTTanTriToanLenHuyN5">
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Screen_Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
