@@ -144,13 +144,14 @@
         android:id="@+id/tvShowHidePass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show"
         android:onClick="showHidePass"
+        android:text="Show"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/edtPassword"
         app:layout_constraintEnd_toEndOf="@+id/edtPassword"
-        app:layout_constraintTop_toTopOf="@+id/edtPassword" />
+        app:layout_constraintTop_toTopOf="@+id/edtPassword"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <View
         android:id="@+id/view3"
