@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -43,8 +45,9 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Screen_Home.this);
         if (acct != null) {
             Picasso.get().load(acct.getPhotoUrl()).into((ImageView) findViewById(R.id.photo));
-            findViewById(R.id.button2).setVisibility(View.VISIBLE);
         }
+
+        registerForContextMenu(findViewById(R.id.photo));
 
         rv_food = findViewById(R.id.rv);
         rv_food_1 = findViewById(R.id.rv_1);
@@ -60,16 +63,29 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
 
         rv_food_1.setAdapter(adapterHomeFood);
         rv_food_1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        findViewById(R.id.button2).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button2:
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        getMenuInflater().inflate(R.menu.menu_context, menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.dangXuat:
                 signOut();
-                break;
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
     }
 
