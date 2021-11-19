@@ -10,6 +10,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
         if (acct != null) {
-            EditText editText = findViewById(R.id.edtEmail);
-            editText.setText(acct.getDisplayName());
+
         }
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void handleSignInResult(GoogleSignInResult result) {
         if(result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
+            Toast.makeText(this, "Đăng nhập Google thành công", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, Screen_Home.class));
             finish();
         }else {
