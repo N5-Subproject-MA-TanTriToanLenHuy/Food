@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
         if (acct != null) {
-
+            EditText editText = findViewById(R.id.edtEmail);
+            editText.setText(acct.getDisplayName());
         }
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);

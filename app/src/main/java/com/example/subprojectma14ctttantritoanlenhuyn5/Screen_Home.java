@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -15,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
@@ -40,6 +42,7 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Screen_Home.this);
         if (acct != null) {
+            Picasso.get().load(acct.getPhotoUrl()).into((ImageView) findViewById(R.id.photo));
             findViewById(R.id.button2).setVisibility(View.VISIBLE);
         }
 
