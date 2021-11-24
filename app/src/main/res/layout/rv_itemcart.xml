@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view"
         app:layout_constraintVertical_bias="0.55"
-        app:srcCompat="@drawable/donuts" />
+        android:src="@drawable/donuts" />
 
     <TextView
         android:id="@+id/tv_quantity"
