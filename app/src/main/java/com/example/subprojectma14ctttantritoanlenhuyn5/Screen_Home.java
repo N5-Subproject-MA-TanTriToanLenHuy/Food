@@ -1,31 +1,17 @@
 package com.example.subprojectma14ctttantritoanlenhuyn5;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
 public class Screen_Home extends AppCompatActivity implements View.OnClickListener{
 
-    private int RC_SIGN_IN = 1;
-    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +21,6 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_home);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Screen_Home.this);
-        if (acct != null) {
-            Picasso.get().load(acct.getPhotoUrl()).into((ImageView) findViewById(R.id.photo));
-        }
-
-        registerForContextMenu(findViewById(R.id.photo));
 
         rv_food = findViewById(R.id.rv);
         rv_food_1 = findViewById(R.id.rv_1);
@@ -70,33 +43,4 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
-        getMenuInflater().inflate(R.menu.menu_context, menu);
-
-        super.onCreateContextMenu(menu, v, menuInfo);
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.dangXuat:
-                signOut();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        startActivity(new Intent(Screen_Home.this, MainActivity.class));
-                        finish();
-                    }
-                });
-    }
 }

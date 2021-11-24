@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
         if (acct != null) {
-
+            Toast.makeText(this, "Đăng nhập Google thành công", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, Screen_Home.class));
+            finish();
         }
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
