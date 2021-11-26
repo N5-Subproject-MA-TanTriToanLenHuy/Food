@@ -49,7 +49,7 @@
         android:background="@drawable/buttonbuynow"
         android:text="Buy Now"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.556"
         app:layout_constraintStart_toStartOf="@+id/bgBottom"
         app:layout_constraintTop_toBottomOf="@+id/textDetail" />
 
