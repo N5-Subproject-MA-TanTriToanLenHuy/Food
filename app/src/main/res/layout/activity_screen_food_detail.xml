@@ -11,6 +11,7 @@
         android:id="@+id/imgFoodDetail"
         android:layout_width="409dp"
         android:layout_height="508dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +33,10 @@
 
     <ImageView
         android:id="@+id/bgbottomTranslucent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,13 +47,15 @@
         android:id="@+id/ButtonBuyNow"
         android:layout_width="212dp"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="132dp"
         android:background="@drawable/buttonbuynow"
         android:text="Buy Now"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="@+id/bgBottom"
-        app:layout_constraintTop_toBottomOf="@+id/textDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/imgFoodDetail" />
 
     <TextView
         android:id="@+id/textName"
@@ -60,7 +64,7 @@
         android:layout_marginTop="80dp"
         android:text="The BTS Meal"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -73,48 +77,11 @@
         android:layout_height="wrap_content"
         android:text="From McDonald's"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textName"
         app:layout_constraintStart_toStartOf="@+id/textName"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
-
-    <TextView
-        android:id="@+id/textDetail"
-        android:layout_width="352dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="16dp"
-
-        android:gravity="center"
-        android:text="With only one week left to get the BTS Meal, new limited-time sauces to try and the virtual portrait series only in the app, there’s never been a better reason to keep coming back for more McNuggets.  The BTS Meal has you (and your McNuggets) covered with new limited-time dipping sauces picked by BTS and inspired by McDonald’s South Korea. Add a little kick to your meal, whether you want the Sweet Chili Sauce or the Cajun Sauce. "
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textBrand"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/textBrand"
-        app:layout_constraintTop_toBottomOf="@+id/textBrand" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="350dp"
-        android:layout_height="180dp"
-        android:background="@drawable/bg_detail"
-        app:layout_constraintBottom_toBottomOf="@+id/textDetail"
-        app:layout_constraintEnd_toEndOf="@+id/textDetail"
-        app:layout_constraintStart_toStartOf="@+id/textDetail"
-        app:layout_constraintTop_toTopOf="@+id/textDetail" />
-
-    <TextView
-        android:id="@+id/textReadMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:text="Read More"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textDetail"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/textDetail"
-        app:layout_constraintTop_toTopOf="@+id/textDetail" />
 
     <ImageView
         android:id="@+id/imageView16"
@@ -125,5 +92,31 @@
         app:layout_constraintStart_toStartOf="@+id/imgFoodDetail"
         app:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
         app:srcCompat="@drawable/arrow" />
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="Add to Cart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/ButtonBuyNow"
+        app:layout_constraintStart_toStartOf="@+id/ButtonBuyNow"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonBuyNow" />
+
+    <TextView
+        android:id="@+id/tvPriceDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="3$"
+        android:textColor="#4CF30A"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textBrand"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/textBrand"
+        app:layout_constraintTop_toBottomOf="@+id/textBrand" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,15 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
 
-public class AdapterHomeFood extends RecyclerView.Adapter<AdapterHomeFood.HomeFoodHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.HomeFoodHolder> {
 
-    private LinkedList<HomeFood> homeFoods;
+    private LinkedList<Food> foods;
     private LayoutInflater inflater;
     private Context context;
     private Activity activity;
 
-    public AdapterHomeFood(LinkedList<HomeFood> homeFoods, Context context, Activity activity) {
-        this.homeFoods = homeFoods;
+    public FoodAdapter(LinkedList<Food> foods, Context context, Activity activity) {
+        this.foods = foods;
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.activity = activity;
@@ -39,34 +39,34 @@ public class AdapterHomeFood extends RecyclerView.Adapter<AdapterHomeFood.HomeFo
     @Override
     public void onBindViewHolder(@NonNull HomeFoodHolder holder, int position) {
         Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
-        HomeFood homeFood = homeFoods.get(position);
-        holder.imv_background.setImageResource(homeFood.getImvBackground());
-        holder.imv_food.setImageResource(homeFood.getImvFood());
-        holder.tv_title.setText(homeFood.getNameTitle());
-        holder.tv_title1.setText(homeFood.getNameTitle1());
+        Food food = foods.get(position);
+        holder.imv_food.setImageResource(food.getImvFood());
+        holder.tvName.setText(food.getName());
+        holder.tvDescription.setText(food.getDescription());
+        holder.tvPrice.setText(String.valueOf(food.getPrice()) + "$");
         holder.itemView.startAnimation(animation);
     }
 
     @Override
     public int getItemCount() {
-        return homeFoods.size();
+        return foods.size();
     }
 
     public class HomeFoodHolder extends RecyclerView.ViewHolder {
 
-        private AdapterHomeFood adapter;
-        ImageView imv_background, imv_food;
-        TextView tv_title, tv_title1;
+        private FoodAdapter adapter;
+        private ImageView imv_food;
+        private TextView tvName, tvDescription, tvPrice;
 
-        public HomeFoodHolder(@NonNull View itemView, AdapterHomeFood adapterHomeFood) {
-            super(itemView);
+        public HomeFoodHolder(@NonNull View view, FoodAdapter foodAdapter) {
+            super(view);
 
-            imv_background = itemView.findViewById(R.id.imv_backgound);
-            imv_food = itemView.findViewById(R.id.imv_food);
-            tv_title = itemView.findViewById(R.id.tv_title1);
-            tv_title1 = itemView.findViewById(R.id.tv_title);
+            imv_food = view.findViewById(R.id.imv_food);
+            tvName = view.findViewById(R.id.tvDescription);
+            tvDescription = view.findViewById(R.id.tvName);
+            tvPrice = view.findViewById(R.id.tvPrice);
 
-            this.adapter = adapterHomeFood;
+            this.adapter = foodAdapter;
         }
     }
 }

@@ -3,54 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#433F5A">
 
-    <ImageView
-        android:id="@+id/imv_backgound"
-        android:layout_width="170dp"
-        android:layout_height="210dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="#FFFCFC"
+    <View
+        android:id="@+id/view4"
+        android:layout_width="177dp"
+        android:layout_height="211dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_background_food"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/thebtsmeal" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imv_food"
-        android:layout_width="154dp"
-        android:layout_height="142dp"
-        app:layout_constraintEnd_toEndOf="@+id/imv_backgound"
-        app:layout_constraintHorizontal_bias="0.562"
-        app:layout_constraintStart_toStartOf="@+id/imv_backgound"
-        app:layout_constraintTop_toTopOf="@+id/imv_backgound"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view4"
         app:srcCompat="@drawable/pic" />
 
     <TextView
-        android:id="@+id/tv_title1"
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="From MCDonald's"
-        android:textColor="#939090"
-        app:layout_constraintEnd_toEndOf="@+id/imv_backgound"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="@+id/imv_backgound"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        android:textAlignment="center"
+        android:textColor="#717171"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvName"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tvName"
         android:layout_width="106dp"
         android:layout_height="25dp"
+        android:layout_marginTop="5dp"
         android:text="The BTS Meal"
+        android:textAlignment="center"
         android:textColor="#040404"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imv_backgound"
-        app:layout_constraintHorizontal_bias="0.546"
-        app:layout_constraintStart_toStartOf="@+id/imv_backgound"
+        app:layout_constraintEnd_toEndOf="@+id/imv_food"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="@+id/imv_food"
         app:layout_constraintTop_toBottomOf="@+id/imv_food" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="3$"
+        android:textAlignment="center"
+        android:textColor="#433F5A"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvDescription"
+        app:layout_constraintStart_toStartOf="@+id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
