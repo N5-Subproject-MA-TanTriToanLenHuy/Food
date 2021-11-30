@@ -72,9 +72,16 @@ public class ProfileFragment extends Fragment {
             case R.id.dangXuat:
                 signOut();
                 return true;
+            case R.id.lienHe:
+                ggMap();
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void ggMap() {
+        startActivity(new Intent(getActivity(), MapsActivity.class));
     }
 
     private void signOut() {
