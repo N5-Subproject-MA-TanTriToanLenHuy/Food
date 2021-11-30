@@ -3,4 +3,7 @@
     <item
         android:id="@+id/dangXuat"
         android:title="Đăng xuất" />
+    <item
+        android:id="@+id/lienHe"
+        android:title="Liên hệ" />
 </menu>
