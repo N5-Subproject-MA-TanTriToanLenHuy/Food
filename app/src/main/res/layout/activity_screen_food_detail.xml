@@ -9,9 +9,10 @@
 
     <ImageView
         android:id="@+id/imgFoodDetail"
-        android:layout_width="409dp"
-        android:layout_height="508dp"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
+        android:transitionName="fade"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="56dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,15 +49,15 @@
         android:id="@+id/ButtonBuyNow"
         android:layout_width="212dp"
         android:layout_height="48dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginBottom="88dp"
         android:background="@drawable/buttonbuynow"
         android:text="Buy Now"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bgbottomTranslucent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="@+id/bgBottom"
-        app:layout_constraintTop_toBottomOf="@+id/imgFoodDetail" />
+        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintStart_toStartOf="@+id/bgBottom" />
 
     <TextView
         android:id="@+id/textName"
@@ -72,7 +74,7 @@
         app:layout_constraintTop_toTopOf="@+id/bgbottomTranslucent" />
 
     <TextView
-        android:id="@+id/textBrand"
+        android:id="@+id/textDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="From McDonald's"
@@ -114,9 +116,9 @@
         android:textColor="#4CF30A"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textBrand"
+        app:layout_constraintEnd_toEndOf="@+id/textDescription"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/textBrand"
-        app:layout_constraintTop_toBottomOf="@+id/textBrand" />
+        app:layout_constraintStart_toStartOf="@+id/textDescription"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
