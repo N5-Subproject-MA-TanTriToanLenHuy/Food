@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,12 +28,15 @@ import com.squareup.picasso.Picasso;
 public class ProfileFragment extends Fragment {
 
     private GoogleSignInClient mGoogleSignInClient;
+    private TextView tvNameAccount;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.profile_fragment, container, false);
+
+        tvNameAccount = view.findViewById(R.id.tvNameAccount);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -43,9 +47,10 @@ public class ProfileFragment extends Fragment {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this.getActivity());
         if (acct != null) {
             Picasso.get().load(acct.getPhotoUrl()).into((ImageView) view.findViewById(R.id.photo));
+            tvNameAccount.setText(acct.getDisplayName());
         }
 
-        registerForContextMenu(view.findViewById(R.id.photo));
+        registerForContextMenu(view.findViewById(R.id.tvNameAccount));
 
         return view;
     }
