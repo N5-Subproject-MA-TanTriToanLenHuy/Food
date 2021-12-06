@@ -33,44 +33,18 @@
         app:srcCompat="@drawable/pic" />
 
     <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="From MCDonald's"
-        android:textAlignment="center"
-        android:textColor="#717171"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvName"
-        app:layout_constraintStart_toStartOf="@+id/tvName"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
-
-    <TextView
         android:id="@+id/tvName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:text="The BTS Meal"
         android:textAlignment="center"
         android:textColor="#040404"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imv_food"
-        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imv_food"
         app:layout_constraintTop_toBottomOf="@+id/imv_food" />
-
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="3$"
-        android:textAlignment="center"
-        android:textColor="#433F5A"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvDescription"
-        app:layout_constraintStart_toStartOf="@+id/tvDescription"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

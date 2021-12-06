@@ -21,14 +21,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.HomeFoodHolder> {
+public class FoodAdapterTrending extends RecyclerView.Adapter<FoodAdapterTrending.FoodHolderTrending> {
 
     private LinkedList<Food> foods;
     private LayoutInflater inflater;
     private Context context;
     private Activity activity;
 
-    public FoodAdapter(LinkedList<Food> foods, Context context, Activity activity) {
+    public FoodAdapterTrending(LinkedList<Food> foods, Context context, Activity activity) {
         this.foods = foods;
         inflater = LayoutInflater.from(context);
         this.context = context;
@@ -37,18 +37,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.HomeFoodHolder
 
     @NonNull
     @Override
-    public HomeFoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FoodHolderTrending onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycleview_home, parent, false);
-        return new HomeFoodHolder(view, this);
+        return new FoodHolderTrending(view, this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeFoodHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodHolderTrending holder, int position) {
         Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
         Food food = foods.get(position);
         holder.tvName.setText(food.getName());
-        holder.tvDescription.setText(food.getDescription());
-        holder.tvPrice.setText(String.valueOf(food.getPrice()) + "$");
         holder.itemView.startAnimation(animation);
         Picasso.get().load(food.getImvFood()).into(holder.imv_food);
     }
@@ -58,20 +56,17 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.HomeFoodHolder
         return foods.size();
     }
 
-    public class HomeFoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class FoodHolderTrending extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private FoodAdapter adapter;
+        private FoodAdapterTrending adapter;
         private ImageView imv_food;
-        private TextView tvName, tvDescription, tvPrice;
+        private TextView tvName;
 
-        public HomeFoodHolder(@NonNull View view, FoodAdapter adapter) {
+        public FoodHolderTrending(@NonNull View view, FoodAdapterTrending adapter) {
             super(view);
 
             imv_food = view.findViewById(R.id.imv_food);
             tvName = view.findViewById(R.id.tvName);
-            tvDescription = view.findViewById(R.id.tvDescription);
-            tvPrice = view.findViewById(R.id.tvPrice);
-
 
             view.setOnClickListener(this);
             this.adapter = adapter;
