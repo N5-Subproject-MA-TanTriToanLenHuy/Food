@@ -95,4 +95,5 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
         app:srcCompat="@drawable/ic_minus" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
