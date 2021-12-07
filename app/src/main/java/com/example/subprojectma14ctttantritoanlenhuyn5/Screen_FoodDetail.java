@@ -4,25 +4,44 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.subprojectma14ctttantritoanlenhuyn5.adapter.CartAdapter;
 import com.example.subprojectma14ctttantritoanlenhuyn5.entity.Food;
 import com.example.subprojectma14ctttantritoanlenhuyn5.entity.MyCart;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class Screen_FoodDetail extends AppCompatActivity {
 
-    private ImageView image;
-    private TextView tvName, tvDescrip, tvPrice;
+    private ImageView image, btnDecreaseQuantity, btnIncreaseQuantity;
+    private TextView tvName, tvDescrip, tvPrice, tvQuantity;
     private Button bt_addtocart;
     private CartAdapter adapter;
     private LinkedList<MyCart> myCarts = new LinkedList<>();
+    int count = 0;
+    double price = 0.0 ;
+    String url = "https://sub-ma-food.herokuapp.com/api/cart";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +55,57 @@ public class Screen_FoodDetail extends AppCompatActivity {
         Food food = (Food) bundle.getSerializable("food");
         tvName.setText(food.getName());
         tvDescrip.setText(food.getDescription());
-        tvPrice.setText(String.valueOf(food.getPrice()) + "$");
+        tvPrice.setText(String.valueOf(food.getPrice()));
         Picasso.get().load(food.getImvFood()).into(image);
         myCarts.add(new MyCart(food.getImvFood(), food.getName(), food.getPrice()));
+        price = Double.parseDouble(tvPrice.getText().toString());
 
+//        ----------------------------ADD TO CART--------------------------
         bt_addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                postDataToJsonAPI(url,food);
+                startActivity(new Intent(Screen_FoodDetail.this, Screen_CartList.class));
+            }
+        });
+
+
+        btnIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Integer.parseInt(tvQuantity.getText().toString()) > 0){
+                    btnDecreaseQuantity.setVisibility(View.VISIBLE);
+                }
+                count =  Integer.parseInt(tvQuantity.getText().toString());
+                count++;
+                tvQuantity.setText(String.valueOf(count));
+
+
+//                System.out.println(price);
+                tvPrice.setText(String.valueOf(price * count));
+            }
+        });
+        btnDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( Integer.parseInt(tvQuantity.getText().toString()) <= 1){
+                    btnDecreaseQuantity.setVisibility(View.INVISIBLE);
+                }
+                count = Integer.parseInt(tvQuantity.getText().toString());
+                count--;
+                tvQuantity.setText(String.valueOf(count));
+
+
+                System.out.println(price);
+                tvPrice.setText(String.valueOf(price * count));
 
             }
         });
+
+
+
     }
+
 
     private void initView() {
         image = findViewById(R.id.imgFoodDetail);
@@ -54,6 +113,63 @@ public class Screen_FoodDetail extends AppCompatActivity {
         tvDescrip = findViewById(R.id.textDescription);
         tvPrice = findViewById(R.id.tvPriceDetail);
         bt_addtocart = findViewById(R.id.btnAddToCart);
+        btnDecreaseQuantity = findViewById(R.id.btn_decrease_quantity);
+        btnIncreaseQuantity = findViewById(R.id.btn_increase_quantity);
+        tvQuantity = findViewById(R.id.tv_quantity);
+
+
+
+
+
     }
 
+    //    -------------------- ADD DATA-----------------------------
+    private void postDataToJsonAPI(String url, Food food) {
+        // Optional Parameters to pass as POST request
+        JSONObject js = new JSONObject();
+        try {
+            js.put("name", food.getName());
+            js.put("price", Double.parseDouble(tvPrice.getText().toString()));
+            js.put("urlImage", food.getImvFood());
+            js.put("quantity", Integer.parseInt(tvQuantity.getText().toString()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Make request for JSONObject
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST, url, js,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        Log.d("TAG", response.toString() + " i am queen");
+                        Toast.makeText(Screen_FoodDetail.this, "Add Food Successfull !", Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.d("TAG", "Error: " + error.getMessage());
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+        };
+
+        // Adding request to request queue
+        Volley.newRequestQueue(this).add(jsonObjReq);
+
+    }
 }
+
+
+
