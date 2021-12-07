@@ -6,11 +6,17 @@ import com.google.gson.annotations.SerializedName;
 public class JWTToken {
 
     @SerializedName("token")
-    @Expose
-    public String token;
+    private String token;
 
-    public JWTToken(String token) {
+    @SerializedName("username")
+    private String username;
+
+    public JWTToken() {
+    }
+
+    public JWTToken(String token, String username) {
         this.token = token;
+        this.username = username;
     }
 
     public String getToken() {
@@ -19,5 +25,13 @@ public class JWTToken {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

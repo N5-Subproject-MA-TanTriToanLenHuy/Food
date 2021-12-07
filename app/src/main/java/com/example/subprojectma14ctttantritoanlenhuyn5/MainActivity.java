@@ -21,7 +21,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.gson.Gson;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,18 +91,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final String username = tvUsername.getText().toString();
         final String password = tvPassword.getText().toString();
 
-        Call<JWTToken> jwtTokenCall = apiCall.userLogin(username, password);
+        Call<ResponseBody> jwtTokenCall = apiCall.userLogin(username, password);
 
-        jwtTokenCall.enqueue(new Callback<JWTToken>() {
+        jwtTokenCall.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<JWTToken> call, Response<JWTToken> response) {
-                JWTToken jwtToken = response.body();
-                Toast.makeText(MainActivity.this, jwtToken.getToken(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                if(response.isSuccessful()){
+                    try {
+                        String rJson = response.body().string();
+                        Gson gson = new Gson();
+                        JWTToken jwtToken = gson.fromJson(rJson, JWTToken.class);
+                        Toast.makeText(MainActivity.this, jwtToken.getToken(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                }else {
+//                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+//                }
             }
 
             @Override
-            public void onFailure(Call<JWTToken> call, Throwable t) {
-
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
