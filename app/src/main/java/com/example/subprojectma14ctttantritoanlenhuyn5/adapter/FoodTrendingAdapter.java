@@ -1,4 +1,4 @@
-package com.example.subprojectma14ctttantritoanlenhuyn5;
+package com.example.subprojectma14ctttantritoanlenhuyn5.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,11 +19,14 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.subprojectma14ctttantritoanlenhuyn5.entity.Food;
+import com.example.subprojectma14ctttantritoanlenhuyn5.R;
+import com.example.subprojectma14ctttantritoanlenhuyn5.Screen_FoodDetail;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHolder> implements Filterable {
+public class FoodTrendingAdapter extends RecyclerView.Adapter<FoodTrendingAdapter.FoodTrendingHolder> implements Filterable {
 
     private LinkedList<Food> foods;
     private LinkedList<Food> foodsOld;
@@ -31,7 +34,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHolder> im
     private Context context;
     private Activity activity;
 
-    public FoodAdapter(LinkedList<Food> foods, Context context, Activity activity) {
+    public FoodTrendingAdapter(LinkedList<Food> foods, Context context, Activity activity) {
         this.foods = foods;
         this.foodsOld = foods;
         inflater = LayoutInflater.from(context);
@@ -41,13 +44,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHolder> im
 
     @NonNull
     @Override
-    public FoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.recycleview_home, parent, false);
-        return new FoodHolder(view, this);
+    public FoodTrendingHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.recycleview_food_trending, parent, false);
+        return new FoodTrendingHolder(view, this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodTrendingHolder holder, int position) {
         Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
         Food food = foods.get(position);
         holder.tvName.setText(food.getName());
@@ -93,13 +96,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHolder> im
         };
     }
 
-    public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class FoodTrendingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private FoodAdapter adapter;
+        private FoodTrendingAdapter adapter;
         private ImageView imv_food;
         private TextView tvName;
 
-        public FoodHolder(@NonNull View view, FoodAdapter adapter) {
+        public FoodTrendingHolder(@NonNull View view, FoodTrendingAdapter adapter) {
             super(view);
 
             imv_food = view.findViewById(R.id.imv_food);
