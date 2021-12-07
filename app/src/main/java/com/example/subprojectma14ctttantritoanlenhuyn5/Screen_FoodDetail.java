@@ -1,8 +1,6 @@
 package com.example.subprojectma14ctttantritoanlenhuyn5;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.subprojectma14ctttantritoanlenhuyn5.adapter.CartAdapter;
+import com.example.subprojectma14ctttantritoanlenhuyn5.entity.Food;
+import com.example.subprojectma14ctttantritoanlenhuyn5.entity.MyCart;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

@@ -1,4 +1,4 @@
-package com.example.subprojectma14ctttantritoanlenhuyn5;
+package com.example.subprojectma14ctttantritoanlenhuyn5.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.subprojectma14ctttantritoanlenhuyn5.MainActivity;
+import com.example.subprojectma14ctttantritoanlenhuyn5.MapsActivity;
+import com.example.subprojectma14ctttantritoanlenhuyn5.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

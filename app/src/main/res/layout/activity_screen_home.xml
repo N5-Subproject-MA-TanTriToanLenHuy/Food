@@ -91,7 +91,7 @@
 
     <fragment
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.subprojectma14ctttantritoanlenhuyn5.ProfileFragment"
+        android:name="com.example.subprojectma14ctttantritoanlenhuyn5.fragment.ProfileFragment"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"

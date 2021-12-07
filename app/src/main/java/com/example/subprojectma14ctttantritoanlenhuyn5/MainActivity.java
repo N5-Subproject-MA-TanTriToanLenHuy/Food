@@ -12,17 +12,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.subprojectma14ctttantritoanlenhuyn5.model.JWTToken;
+import com.example.subprojectma14ctttantritoanlenhuyn5.remote.APICall;
+import com.example.subprojectma14ctttantritoanlenhuyn5.remote.RetroClass;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
+    private TextView tvUsername, tvPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         overridePendingTransition(R.anim.enter_x, R.anim.exit_x);
+
+        initView();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -46,20 +60,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.tvSignUp).setOnClickListener(this);
+        findViewById(R.id.btnLogIn).setOnClickListener(this);
+    }
+
+    private void initView() {
+        tvUsername = findViewById(R.id.userNameLogin);
+        tvPassword = findViewById(R.id.passwordLogin);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
-                signIn();
+                signInWithGoogle();
                 break;
             case R.id.tvSignUp:
                 startActivity(new Intent(this, RegisterAccount.class));
                 finish();
                 break;
+            case R.id.btnLogIn:
+                loginJWT();
+                break;
         }
     }
+
+    private void loginJWT() {
+
+        final APICall apiCall = RetroClass.getAPICall();
+
+        final String username = tvUsername.getText().toString();
+        final String password = tvPassword.getText().toString();
+
+        Call<ResponseBody> jwtTokenCall = apiCall.userLogin(username, password);
+
+        jwtTokenCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                if(response.isSuccessful()){
+                    try {
+                        String rJson = response.body().string();
+                        Gson gson = new Gson();
+                        JWTToken jwtToken = gson.fromJson(rJson, JWTToken.class);
+                        Toast.makeText(MainActivity.this, jwtToken.getToken(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                }else {
+//                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+//                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -70,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void signIn() {
+    private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -87,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void showHidePass(View view){
-        EditText editText = findViewById(R.id.edtPassword);
+        EditText editText = findViewById(R.id.passwordLogin);
         TextView textView = findViewById(R.id.tvShowHidePass);
         if(view.getId() == R.id.tvShowHidePass){
             if(editText.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){

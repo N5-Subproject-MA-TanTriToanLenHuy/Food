@@ -15,6 +15,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.subprojectma14ctttantritoanlenhuyn5.adapter.FoodTrendingAdapter;
+import com.example.subprojectma14ctttantritoanlenhuyn5.adapter.FoodFavouritesAdapter;
+import com.example.subprojectma14ctttantritoanlenhuyn5.entity.Food;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +29,8 @@ public class Screen_Home extends AppCompatActivity{
 
     private RecyclerView rv_foodTrending, rv_foodFavourites;
     private ImageView imv_cart;
-    private FoodAdapter foodAdapter;
+    private FoodTrendingAdapter foodTrendingAdapter;
+    private FoodFavouritesAdapter foodFavouritesAdapter;
     private LinkedList<Food> foodsTrending = new LinkedList<>();
     private LinkedList<Food> foodsFavorites = new LinkedList<>();
 
@@ -34,7 +38,6 @@ public class Screen_Home extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_home);
@@ -52,18 +55,6 @@ public class Screen_Home extends AppCompatActivity{
             }
         });
 
-//        String image = "https://i.imgur.com/OK1u0FO.jpeg";
-//        foods.add(new Food(image, "From MCDonald's", "The BTS Meal", 3D));
-//        foods.add(new Food(image, "From MCDonald's", "The BTS Meal", 3D));
-//        foods.add(new Food(image, "From MCDonald's", "The BTS Meal", 3D));
-//        foods.add(new Food(image, "From MCDonald's", "The BTS Meal", 3D));
-//
-//        foodAdapter = new FoodAdapter(foods, this, Screen_Home.this);
-//        rv_food.setAdapter(foodAdapter);
-//        rv_food.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//
-//        rv_food_1.setAdapter(foodAdapter);
-//        rv_food_1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
 
@@ -74,19 +65,21 @@ public class Screen_Home extends AppCompatActivity{
 
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
 
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                foodAdapter.getFilter().filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                foodAdapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                foodTrendingAdapter.getFilter().filter(query);
+                foodFavouritesAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                foodTrendingAdapter.getFilter().filter(newText);
+                foodFavouritesAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void trendingFood() {
@@ -110,8 +103,8 @@ public class Screen_Home extends AppCompatActivity{
                         e.printStackTrace();
                     }
                 }
-                foodAdapter = new FoodAdapter(foodsTrending, Screen_Home.this, Screen_Home.this);
-                rv_foodTrending.setAdapter(foodAdapter);
+                foodTrendingAdapter = new FoodTrendingAdapter(foodsTrending, Screen_Home.this, Screen_Home.this);
+                rv_foodTrending.setAdapter(foodTrendingAdapter);
                 rv_foodTrending.setLayoutManager(new LinearLayoutManager(Screen_Home.this, LinearLayoutManager.HORIZONTAL, false));
             }
         }, new Response.ErrorListener() {
@@ -145,9 +138,9 @@ public class Screen_Home extends AppCompatActivity{
                         e.printStackTrace();
                     }
                 }
-                foodAdapter = new FoodAdapter(foodsFavorites, Screen_Home.this, Screen_Home.this);
+                foodFavouritesAdapter = new FoodFavouritesAdapter(foodsFavorites, Screen_Home.this, Screen_Home.this);
 
-                rv_foodFavourites.setAdapter(foodAdapter);
+                rv_foodFavourites.setAdapter(foodFavouritesAdapter);
                 rv_foodFavourites.setLayoutManager(new LinearLayoutManager(Screen_Home.this, LinearLayoutManager.HORIZONTAL, false));
             }
         }, new Response.ErrorListener() {
