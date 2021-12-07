@@ -48,6 +48,7 @@ public class Screen_CartList extends AppCompatActivity {
         bt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(Screen_CartList.this, Screen_Home.class));
                 finish();
             }
         });

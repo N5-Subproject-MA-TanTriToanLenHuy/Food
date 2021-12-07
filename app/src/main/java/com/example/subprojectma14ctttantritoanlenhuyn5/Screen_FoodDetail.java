@@ -66,6 +66,7 @@ public class Screen_FoodDetail extends AppCompatActivity {
             public void onClick(View v) {
                 postDataToJsonAPI(url,food);
                 startActivity(new Intent(Screen_FoodDetail.this, Screen_CartList.class));
+                finish();
             }
         });
 

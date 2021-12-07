@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }
 
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
+        findViewById(R.id.status).setOnClickListener(this);
         findViewById(R.id.tvSignUp).setOnClickListener(this);
         findViewById(R.id.btnLogIn).setOnClickListener(this);
     }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sign_in_button:
+            case R.id.status:
                 signInWithGoogle();
                 break;
             case R.id.tvSignUp:
