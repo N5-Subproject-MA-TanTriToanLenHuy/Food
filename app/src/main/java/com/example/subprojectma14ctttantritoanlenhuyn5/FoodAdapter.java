@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,15 +23,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
-public class FoodAdapterTrending extends RecyclerView.Adapter<FoodAdapterTrending.FoodHolderTrending> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHolder> implements Filterable {
 
     private LinkedList<Food> foods;
+    private LinkedList<Food> foodsOld;
     private LayoutInflater inflater;
     private Context context;
     private Activity activity;
 
-    public FoodAdapterTrending(LinkedList<Food> foods, Context context, Activity activity) {
+    public FoodAdapter(LinkedList<Food> foods, Context context, Activity activity) {
         this.foods = foods;
+        this.foodsOld = foods;
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.activity = activity;
@@ -37,13 +41,13 @@ public class FoodAdapterTrending extends RecyclerView.Adapter<FoodAdapterTrendin
 
     @NonNull
     @Override
-    public FoodHolderTrending onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycleview_home, parent, false);
-        return new FoodHolderTrending(view, this);
+        return new FoodHolder(view, this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodHolderTrending holder, int position) {
+    public void onBindViewHolder(@NonNull FoodHolder holder, int position) {
         Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
         Food food = foods.get(position);
         holder.tvName.setText(food.getName());
@@ -56,13 +60,46 @@ public class FoodAdapterTrending extends RecyclerView.Adapter<FoodAdapterTrendin
         return foods.size();
     }
 
-    public class FoodHolderTrending extends RecyclerView.ViewHolder implements View.OnClickListener{
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String s = constraint.toString();
+                if (s.isEmpty()){
+                    foods = foodsOld;
+                }else {
+                    LinkedList<Food> foodList = new LinkedList<>();
+                    for(Food food : foodsOld){
+                        if(food.getName().toLowerCase().contains(s.toLowerCase())){
+                            foodList.add(food);
+                        }
+                    }
 
-        private FoodAdapterTrending adapter;
+                    foods = foodList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = foods;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                foods = (LinkedList<Food>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private FoodAdapter adapter;
         private ImageView imv_food;
         private TextView tvName;
 
-        public FoodHolderTrending(@NonNull View view, FoodAdapterTrending adapter) {
+        public FoodHolder(@NonNull View view, FoodAdapter adapter) {
             super(view);
 
             imv_food = view.findViewById(R.id.imv_food);

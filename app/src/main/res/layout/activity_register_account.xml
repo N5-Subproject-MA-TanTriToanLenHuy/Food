@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/edtPasswordSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -24,6 +24,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/edtPasswordConfirm"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FDFDFD"
+        android:ems="10"
+        android:hint="Confirm your password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="#FAFAFA"
+        android:textColorHint="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <View
         android:id="@+id/view"
@@ -46,25 +62,25 @@
         app:srcCompat="@drawable/ic_home" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Log In"
-        android:textColor="#A1FAF9F9"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:textColor="#FFFFFF"
+        android:textColor="#A1FAF9F9"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/tvLogin" />
 
     <TextView
         android:id="@+id/textView3"
@@ -91,10 +107,21 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmailSignUp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Confirm password"
+        android:textColor="#FFFDFD"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/edtPasswordSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordSignUp" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtEmailSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -111,54 +138,19 @@
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Forgot Password?"
-        android:textColor="#FF763C"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/edtPassword"
-        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
-
     <Button
-        android:id="@+id/btnLogIn"
+        android:id="@+id/btnSubmit"
         android:layout_width="214dp"
         android:layout_height="48dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/btn_login"
-        android:text="Log In"
+        android:text="Submit"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <ImageView
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnLogIn"
-        app:layout_constraintStart_toStartOf="@+id/btnLogIn"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
-        app:srcCompat="@drawable/google" />
-
-    <TextView
-        android:id="@+id/tvShowHidePass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="showHidePass"
-        android:text="Show"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edtPassword"
-        app:layout_constraintEnd_toEndOf="@+id/edtPassword"
-        app:layout_constraintTop_toTopOf="@+id/edtPassword"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordConfirm" />
 
     <View
         android:id="@+id/view3"
@@ -166,7 +158,7 @@
         android:layout_height="3dp"
         android:background="#FF763C"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

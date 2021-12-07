@@ -1,6 +1,7 @@
 package com.example.subprojectma14ctttantritoanlenhuyn5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,12 +22,11 @@ import org.json.JSONObject;
 
 import java.util.LinkedList;
 
-public class Screen_Home extends AppCompatActivity implements View.OnClickListener{
+public class Screen_Home extends AppCompatActivity{
 
     private RecyclerView rv_foodTrending, rv_foodFavourites;
-    private FoodAdapterTrending foodAdapterTrending;
-    private FoodAdapterFavourites foodAdapterFavourites;
     private ImageView imv_cart;
+    private FoodAdapter foodAdapter;
     private LinkedList<Food> foodsTrending = new LinkedList<>();
     private LinkedList<Food> foodsFavorites = new LinkedList<>();
 
@@ -66,15 +66,27 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
 //        rv_food_1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
+
     private void initView() {
         rv_foodTrending = findViewById(R.id.rv);
         rv_foodFavourites = findViewById(R.id.rv_1);
         imv_cart = findViewById(R.id.imv_cart);
-    }
 
-    @Override
-    public void onClick(View v) {
+        SearchView searchView = (SearchView) findViewById(R.id.searchView);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                foodAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                foodAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void trendingFood() {
@@ -98,8 +110,8 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
                         e.printStackTrace();
                     }
                 }
-                foodAdapterTrending = new FoodAdapterTrending(foodsTrending, Screen_Home.this, Screen_Home.this);
-                rv_foodTrending.setAdapter(foodAdapterTrending);
+                foodAdapter = new FoodAdapter(foodsTrending, Screen_Home.this, Screen_Home.this);
+                rv_foodTrending.setAdapter(foodAdapter);
                 rv_foodTrending.setLayoutManager(new LinearLayoutManager(Screen_Home.this, LinearLayoutManager.HORIZONTAL, false));
             }
         }, new Response.ErrorListener() {
@@ -133,9 +145,9 @@ public class Screen_Home extends AppCompatActivity implements View.OnClickListen
                         e.printStackTrace();
                     }
                 }
-                foodAdapterFavourites = new FoodAdapterFavourites(foodsFavorites, Screen_Home.this, Screen_Home.this);
+                foodAdapter = new FoodAdapter(foodsFavorites, Screen_Home.this, Screen_Home.this);
 
-                rv_foodFavourites.setAdapter(foodAdapterFavourites);
+                rv_foodFavourites.setAdapter(foodAdapter);
                 rv_foodFavourites.setLayoutManager(new LinearLayoutManager(Screen_Home.this, LinearLayoutManager.HORIZONTAL, false));
             }
         }, new Response.ErrorListener() {

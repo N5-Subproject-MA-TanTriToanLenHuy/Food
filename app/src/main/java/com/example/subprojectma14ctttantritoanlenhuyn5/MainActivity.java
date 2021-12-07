@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        overridePendingTransition(R.anim.enter_x, R.anim.exit_x);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+        findViewById(R.id.tvSignUp).setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.sign_in_button:
                 signIn();
+                break;
+            case R.id.tvSignUp:
+                startActivity(new Intent(this, RegisterAccount.class));
+                finish();
                 break;
         }
     }
