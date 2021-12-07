@@ -5,7 +5,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,6 +25,7 @@ import java.util.LinkedList;
 public class Screen_Home extends AppCompatActivity{
 
     private RecyclerView rv_foodTrending, rv_foodFavourites;
+    private ImageView imv_cart;
     private FoodAdapter foodAdapter;
     private LinkedList<Food> foodsTrending = new LinkedList<>();
     private LinkedList<Food> foodsFavorites = new LinkedList<>();
@@ -39,6 +43,15 @@ public class Screen_Home extends AppCompatActivity{
 
         trendingFood();
         favouritesFood();
+
+        imv_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(Screen_Home.this, Screen_CartList.class);
+                startActivity(it);
+            }
+        });
+
 //        String image = "https://i.imgur.com/OK1u0FO.jpeg";
 //        foods.add(new Food(image, "From MCDonald's", "The BTS Meal", 3D));
 //        foods.add(new Food(image, "From MCDonald's", "The BTS Meal", 3D));
@@ -57,6 +70,8 @@ public class Screen_Home extends AppCompatActivity{
     private void initView() {
         rv_foodTrending = findViewById(R.id.rv);
         rv_foodFavourites = findViewById(R.id.rv_1);
+        imv_cart = findViewById(R.id.imv_cart);
+
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
