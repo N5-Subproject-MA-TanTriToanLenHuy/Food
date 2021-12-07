@@ -25,42 +25,33 @@
         android:layout_width="15dp"
         android:layout_height="22dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-    <ImageView
-        android:id="@+id/imv_cart"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_cart"
-        app:srcCompat="@drawable/user_avatar" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cart"
         android:layout_width="0dp"
         android:layout_height="450dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imv_cart" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_cart" />
 
     <Button
         android:id="@+id/btn_checkout"
-        android:layout_width="214dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/custom_btn_checkout"
         android:text="CHECKOUT"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_total"
+        app:layout_constraintStart_toStartOf="@+id/tvTotal"
         app:layout_constraintTop_toBottomOf="@+id/tv_total"
         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -82,12 +73,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:text="Total"
         android:textColor="#FF9E2D"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_cart" />
+
+    <fragment
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.subprojectma14ctttantritoanlenhuyn5.ProfileFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_cart"
+        tools:layout="@layout/profile_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
