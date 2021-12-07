@@ -8,22 +8,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroClass {
 
-    private static final String URL = "";
+    private static final String URL = "https://n5-apigateway-food.herokuapp.com/";
+    private static Retrofit retrofit = null;
 
-    private static Retrofit getRetrofitInstance(){
+    private static Retrofit getClient(){
 
-        Gson gson = new GsonBuilder().setLenient().create();
+        if(retrofit == null){
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
 
-        return new Retrofit
-                .Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
+            return new Retrofit
+                    .Builder()
+                    .baseUrl(URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+        }
+        return retrofit;
     }
 
     public static APICall getAPICall(){
-        return getRetrofitInstance().create(APICall.class);
+        return getClient().create(APICall.class);
     }
 
 }
