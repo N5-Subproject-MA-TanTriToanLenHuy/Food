@@ -1,4 +1,4 @@
-package com.example.subprojectma14ctttantritoanlenhuyn5;
+package com.example.subprojectma14ctttantritoanlenhuyn5.entity;
 
 import java.io.Serializable;
 

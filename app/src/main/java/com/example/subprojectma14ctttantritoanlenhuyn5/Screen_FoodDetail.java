@@ -1,8 +1,6 @@
 package com.example.subprojectma14ctttantritoanlenhuyn5;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.subprojectma14ctttantritoanlenhuyn5.adapter.CartAdapter;
+import com.example.subprojectma14ctttantritoanlenhuyn5.entity.Food;
+import com.example.subprojectma14ctttantritoanlenhuyn5.entity.MyCart;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
