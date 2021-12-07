@@ -4,14 +4,42 @@ import java.io.Serializable;
 
 public class MyCart implements Serializable {
 
+    private int id;
     private String imvFood;
     private String name;
     private Double price;
+    private int quantity;
 
-    public MyCart(String imvFood, String name, Double price) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public MyCart(int id, String imvFood, String name, Double price, int quantity) {
         this.imvFood = imvFood;
         this.name = name;
         this.price = price;
+        this.id = id;
+        this.quantity = quantity;
+
+    }
+
+    public MyCart( String imvFood, String name, Double price) {
+        this.imvFood = imvFood;
+        this.name = name;
+        this.price = price;
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImvFood() {

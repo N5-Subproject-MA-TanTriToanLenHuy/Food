@@ -74,19 +74,19 @@ public class Screen_Home extends AppCompatActivity{
 
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                foodAdapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                foodAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                foodAdapter.getFilter().filter(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                foodAdapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
     }
 
     private void trendingFood() {
