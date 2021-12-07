@@ -16,12 +16,12 @@
         android:text="Cart"
         android:textColor="#FAF7F7"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_back"
         android:layout_width="15dp"
         android:layout_height="22dp"
         android:layout_marginStart="20dp"
@@ -32,7 +32,7 @@
         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imv_cart"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
@@ -42,14 +42,14 @@
         app:srcCompat="@drawable/user_avatar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv_cart"
         android:layout_width="0dp"
         android:layout_height="450dp"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imv_cart" />
 
     <Button
         android:id="@+id/btn_checkout"
@@ -88,6 +88,6 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_cart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
