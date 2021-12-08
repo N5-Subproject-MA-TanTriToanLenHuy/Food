@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btnBackCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
@@ -53,8 +53,8 @@
         android:text="Log In"
         android:textColor="#A1FAF9F9"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/btnBackCheckout"
+        app:layout_constraintTop_toBottomOf="@+id/btnBackCheckout" />
 
     <TextView
         android:id="@+id/tvSignUp"
@@ -63,7 +63,7 @@
         android:text="Sign Up"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/btnBackCheckout"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView

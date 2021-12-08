@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Map;
 
 public class Screen_FoodDetail extends AppCompatActivity {
@@ -74,7 +75,8 @@ public class Screen_FoodDetail extends AppCompatActivity {
                 count++;
                 tvQuantity.setText(String.valueOf(count));
 
-                tvPrice.setText(String.valueOf(price * count));
+                double p = (double) Math.round(price * count * 1000) / 1000;
+                tvPrice.setText(String.valueOf(p));
             }
         });
 
@@ -88,7 +90,8 @@ public class Screen_FoodDetail extends AppCompatActivity {
                 count--;
                 tvQuantity.setText(String.valueOf(count));
 
-                tvPrice.setText(String.valueOf(price * count));
+                double p = (double) Math.round(price * count * 1000) / 1000;
+                tvPrice.setText(String.valueOf(p));
             }
         });
 

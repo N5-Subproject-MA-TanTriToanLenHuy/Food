@@ -23,7 +23,7 @@
 
     <ImageView
         android:id="@+id/bgBottom"
-        android:layout_width="417dp"
+        android:layout_width="0dp"
         android:layout_height="470dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +49,10 @@
 
     <Button
         android:id="@+id/btnAddToCart"
-        android:layout_width="212dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="88dp"
         android:background="@drawable/buttonbuynow"
         android:text="Add to cart"
@@ -170,7 +172,7 @@
 
     <TextView
         android:id="@+id/tv_quantity"
-        android:layout_width="12dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="40dp"
         android:gravity="center_horizontal"
@@ -178,8 +180,8 @@
         android:textColor="#FDF8F8"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
-        app:layout_constraintEnd_toEndOf="@+id/tvPriceDetail"
-        app:layout_constraintStart_toStartOf="@+id/tvPriceDetail" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_increase_quantity"
+        app:layout_constraintStart_toEndOf="@+id/btn_decrease_quantity" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

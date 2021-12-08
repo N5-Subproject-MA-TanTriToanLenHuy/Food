@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -41,9 +42,6 @@ public class Screen_CartList extends AppCompatActivity {
         setContentView(R.layout.activity_screen_cart_list);
         initView();
         cart();
-//        Intent refresh = new Intent(this, Screen_CartList.class);
-//        startActivity(refresh);
-//        this.finish();
 
         bt_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +54,13 @@ public class Screen_CartList extends AppCompatActivity {
         btn_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Screen_CartList.this, Screen_Checkout.class));
-                finish();
+                if(myCarts.size() > 0){
+                    startActivity(new Intent(Screen_CartList.this, Screen_Checkout.class));
+                    finish();
+                }else {
+                    Toast.makeText(Screen_CartList.this, "Please choose foods!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
 

@@ -39,8 +39,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyCartHolderFa
     private LayoutInflater inflater;
     private Context context;
     private Activity activity;
-    int count = 0;
-    double price = 0.0 ;
+
     public CartAdapter(LinkedList<MyCart> myCarts, Context context, Activity activity) {
         this.myCarts = myCarts;
         inflater = LayoutInflater.from(context);
@@ -59,42 +58,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyCartHolderFa
     public void onBindViewHolder(@NonNull CartAdapter.MyCartHolderFavourites holder, int position) {
         MyCart myCart = myCarts.get(position);
         holder.tvName.setText(myCart.getName());
-        holder.tvPrice.setText(String.valueOf(myCart.getPrice()));
+        double p = (double) Math.round(myCart.getPrice() * 1000) / 1000;
+        holder.tvPrice.setText(String.valueOf(p));
         Picasso.get().load(myCart.getImvFood()).into(holder.imv_food);
-        price = Double.parseDouble(holder.tvPrice.getText().toString());
         holder.tvQuantity.setText(String.valueOf(myCart.getQuantity()));
-
-//        holder.btnIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(Integer.parseInt(holder.tvQuantity.getText().toString()) > 0){
-//                    holder.btnDecreaseQuantity.setVisibility(View.VISIBLE);
-//                }
-//                count =  Integer.parseInt(holder.tvQuantity.getText().toString());
-//                count++;
-//                holder.tvQuantity.setText(String.valueOf(count));
-//
-//                System.out.println(price);
-//                holder.tvPrice.setText(String.valueOf(price * count));
-//            }
-//        });
-//        holder.btnDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if( Integer.parseInt(holder.tvQuantity.getText().toString()) <= 1){
-//                    holder.btnDecreaseQuantity.setVisibility(View.INVISIBLE);
-//                }
-//                    count = Integer.parseInt(holder.tvQuantity.getText().toString());
-//                    count--;
-//                    holder.tvQuantity.setText(String.valueOf(count));
-//
-//
-//                    System.out.println(price);
-//                    holder.tvPrice.setText(String.valueOf(price * count));
-//
-//            }
-//        });
-
     }
 
     @Override
@@ -109,14 +76,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyCartHolderFa
         private TextView tvName, tvPrice;
         Button btnDelete;
 
+        TextView tvQuantity;
 
-        ImageView btnIncreaseQuantity;  // btn_add_quantity
-        TextView tvQuantity,tvTotal; //tv_quantity
-        ImageView btnDecreaseQuantity;  //btn_decrease_quantity
-
-
-
-//--------
         public MyCartHolderFavourites(View view, CartAdapter cartAdapter) {
             super(view);
 
@@ -125,8 +86,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyCartHolderFa
             tvQuantity = view.findViewById(R.id.tv_quantity_item);
             tvPrice = view.findViewById(R.id.tv_price_meal);
             btnDelete = view.findViewById(R.id.btn_remove_item);
-//            btnDecreaseQuantity = view.findViewById(R.id.btn_decrease_quantity1);
-//            btnIncreaseQuantity = view.findViewById(R.id.btn_add_quantity1);
 
             view.setOnClickListener(this);
 

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rv" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btnBackCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -69,8 +69,8 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/custom_searchview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/btnBackCheckout"
+        app:layout_constraintTop_toBottomOf="@+id/btnBackCheckout"
         app:queryHint="Search" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -95,9 +95,9 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBackCheckout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/btnBackCheckout"
         tools:layout="@layout/profile_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

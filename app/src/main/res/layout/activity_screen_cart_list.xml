@@ -49,6 +49,7 @@
         android:layout_marginBottom="80dp"
         android:background="@drawable/custom_btn_checkout"
         android:text="CHECKOUT"
+        android:textColor="#FBFBFB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tv_total"
         app:layout_constraintStart_toStartOf="@+id/tvTotal"

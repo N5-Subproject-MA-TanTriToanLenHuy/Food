@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class Screen_Checkout extends AppCompatActivity implements View.OnClickLi
     EditText etName, etPhone, etAddress;
     TextView tvTotal;
     Button btnComplete;
+    ImageView btnBack;
     private LinkedList<MyCart> myCarts = new LinkedList<>();
     String url = "https://sub-ma-food.herokuapp.com/api/cart";
 
@@ -45,7 +47,7 @@ public class Screen_Checkout extends AppCompatActivity implements View.OnClickLi
         initView();
         cart();
         btnComplete.setOnClickListener(this);
-
+        btnBack.setOnClickListener(this);
     }
 
     private void initView() {
@@ -54,6 +56,7 @@ public class Screen_Checkout extends AppCompatActivity implements View.OnClickLi
         etAddress = findViewById(R.id.etDiaChi);
         btnComplete = findViewById(R.id.btnCheckOut);
         tvTotal = findViewById(R.id.tv_TongThanhToan);
+        btnBack = findViewById(R.id.btnBackCheckout);
     }
 
     @Override
@@ -61,6 +64,10 @@ public class Screen_Checkout extends AppCompatActivity implements View.OnClickLi
         switch(v.getId()){
             case R.id.btnCheckOut:
                 checkOut();
+                break;
+            case R.id.btnBackCheckout:
+                startActivity(new Intent(Screen_Checkout.this, Screen_CartList.class));
+                finish();
                 break;
         }
     }
