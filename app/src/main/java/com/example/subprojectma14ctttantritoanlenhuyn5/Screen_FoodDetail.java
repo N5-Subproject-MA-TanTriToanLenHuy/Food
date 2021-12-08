@@ -4,24 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyLog;
 import com.example.subprojectma14ctttantritoanlenhuyn5.adapter.CartAdapter;
 import com.example.subprojectma14ctttantritoanlenhuyn5.entity.Food;
 import com.example.subprojectma14ctttantritoanlenhuyn5.entity.MyCart;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
@@ -36,8 +33,7 @@ public class Screen_FoodDetail extends AppCompatActivity {
 
     private ImageView image, btnDecreaseQuantity, btnIncreaseQuantity;
     private TextView tvName, tvDescrip, tvPrice, tvQuantity;
-    private Button bt_addtocart;
-    private CartAdapter adapter;
+    private Button bt_addtocart, btnBackToMenu;
     private LinkedList<MyCart> myCarts = new LinkedList<>();
     int count = 0;
     double price = 0.0 ;
@@ -64,12 +60,9 @@ public class Screen_FoodDetail extends AppCompatActivity {
         bt_addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postDataToJsonAPI(url,food);
-                startActivity(new Intent(Screen_FoodDetail.this, Screen_CartList.class));
-                finish();
+                postDataToJsonAPI(url, food);
             }
         });
-
 
         btnIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +74,10 @@ public class Screen_FoodDetail extends AppCompatActivity {
                 count++;
                 tvQuantity.setText(String.valueOf(count));
 
-
-//                System.out.println(price);
                 tvPrice.setText(String.valueOf(price * count));
             }
         });
+
         btnDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,17 +88,18 @@ public class Screen_FoodDetail extends AppCompatActivity {
                 count--;
                 tvQuantity.setText(String.valueOf(count));
 
-
-                System.out.println(price);
                 tvPrice.setText(String.valueOf(price * count));
-
             }
         });
 
-
-
+        btnBackToMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Screen_FoodDetail.this, Screen_Home.class));
+                finish();
+            }
+        });
     }
-
 
     private void initView() {
         image = findViewById(R.id.imgFoodDetail);
@@ -114,14 +107,10 @@ public class Screen_FoodDetail extends AppCompatActivity {
         tvDescrip = findViewById(R.id.textDescription);
         tvPrice = findViewById(R.id.tvPriceDetail);
         bt_addtocart = findViewById(R.id.btnAddToCart);
+        btnBackToMenu = findViewById(R.id.backToMenu);
         btnDecreaseQuantity = findViewById(R.id.btn_decrease_quantity);
         btnIncreaseQuantity = findViewById(R.id.btn_increase_quantity);
         tvQuantity = findViewById(R.id.tv_quantity);
-
-
-
-
-
     }
 
     //    -------------------- ADD DATA-----------------------------
@@ -136,24 +125,22 @@ public class Screen_FoodDetail extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         // Make request for JSONObject
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        Log.d("TAG", response.toString() + " i am queen");
-                        Toast.makeText(Screen_FoodDetail.this, "Add Food Successfull !", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(Screen_FoodDetail.this
+                                , tvQuantity.getText().toString() + " " + tvName.getText().toString() + " is added"
+                                , Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                VolleyLog.d("TAG", "Error: " + error.getMessage());
+                VolleyLog.d("TAG", "Error: " + error.getMessage());
             }
         }) {
-
             /**
              * Passing some request headers
              */
@@ -163,12 +150,9 @@ public class Screen_FoodDetail extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
-
         };
-
         // Adding request to request queue
         Volley.newRequestQueue(this).add(jsonObjReq);
-
     }
 }
 

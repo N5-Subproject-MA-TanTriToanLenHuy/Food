@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+       </KeyFrameSet>
+        <OnSwipe
+            motion:touchAnchorId="@+id/imgFoodDetail"
+            motion:dragDirection="dragDown"
+            motion:touchAnchorSide="bottom" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/imageView16"
+            motion:layout_constraintEnd_toEndOf="@+id/imgFoodDetail"
+            android:layout_width="41dp"
+            android:layout_height="31dp"
+            motion:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
+            motion:layout_constraintStart_toStartOf="@+id/imgFoodDetail"
+            android:layout_marginTop="36dp"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/imageView16"
+            motion:layout_constraintEnd_toEndOf="@+id/imgFoodDetail"
+            android:layout_width="41dp"
+            android:layout_height="31dp"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
+            motion:layout_constraintStart_toStartOf="@+id/imgFoodDetail"
+            android:layout_marginTop="36dp" />
+        <Constraint
+            android:id="@+id/bgbottomTranslucent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="1.0"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintTop_toTopOf="@+id/bgBottom"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="56dp"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/bgbottomTranslucent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="1.0"
+            android:visibility="invisible"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintTop_toTopOf="@+id/bgBottom"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="56dp" />
+        <Constraint
+            android:id="@+id/bgBottom"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="417dp"
+            android:layout_height="470dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0.712"
+            motion:layout_constraintHorizontal_bias="1.0"
+            motion:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/bgBottom"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="417dp"
+            android:layout_height="470dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0.712"
+            android:visibility="invisible"
+            motion:layout_constraintHorizontal_bias="1.0"
+            motion:layout_constraintTop_toTopOf="@+id/imgFoodDetail"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0.0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/imgFoodDetail"
+            android:layout_marginTop="180dp"
+            android:layout_marginBottom="180dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp" />
+        <Constraint
+            android:id="@+id/textDescription"
+            motion:layout_constraintEnd_toEndOf="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/textName"
+            motion:layout_constraintStart_toStartOf="@+id/textName"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/textDescription"
+            motion:layout_constraintEnd_toEndOf="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toBottomOf="@+id/textName"
+            motion:layout_constraintStart_toStartOf="@+id/textName" />
+        <Constraint
+            android:id="@+id/btnAddToCart"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/bgbottomTranslucent"
+            android:layout_marginBottom="88dp"
+            motion:layout_constraintHorizontal_bias="0.556"
+            motion:layout_constraintStart_toStartOf="@+id/bgBottom"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/btnAddToCart"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/bgbottomTranslucent"
+            android:layout_marginBottom="88dp"
+            android:visibility="invisible"
+            motion:layout_constraintHorizontal_bias="0.556"
+            motion:layout_constraintStart_toStartOf="@+id/bgBottom" />
+        <Constraint
+            android:id="@+id/textName"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="@+id/bgbottomTranslucent"
+            motion:layout_constraintHorizontal_bias="0.502"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="60dp"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/textName"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toTopOf="@+id/bgbottomTranslucent"
+            motion:layout_constraintHorizontal_bias="0.502"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="60dp" />
+        <Constraint
+            android:id="@+id/backToMenu"
+            motion:layout_constraintEnd_toEndOf="@+id/btnAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/btnAddToCart"
+            motion:layout_constraintStart_toStartOf="@+id/btnAddToCart"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/backToMenu"
+            motion:layout_constraintEnd_toEndOf="@+id/btnAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toBottomOf="@+id/btnAddToCart"
+            motion:layout_constraintStart_toStartOf="@+id/btnAddToCart" />
+        <Constraint
+            android:id="@+id/tvPriceDetail"
+            motion:layout_constraintEnd_toEndOf="@+id/textDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/textDescription"
+            motion:layout_constraintHorizontal_bias="0.496"
+            motion:layout_constraintStart_toStartOf="@+id/textDescription"
+            android:layout_marginTop="44dp"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/tvPriceDetail"
+            motion:layout_constraintEnd_toEndOf="@+id/textDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toBottomOf="@+id/textDescription"
+            motion:layout_constraintHorizontal_bias="0.496"
+            motion:layout_constraintStart_toStartOf="@+id/textDescription"
+            android:layout_marginTop="44dp" />
+        <Constraint
+            android:id="@+id/tvPriceDetail2"
+            motion:layout_constraintStart_toEndOf="@+id/tvPriceDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/tvPriceDetail"
+            motion:layout_constraintVertical_bias="0.0"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintTop_toTopOf="@+id/tvPriceDetail"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/tvPriceDetail2"
+            motion:layout_constraintStart_toEndOf="@+id/tvPriceDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/tvPriceDetail"
+            motion:layout_constraintVertical_bias="0.0"
+            android:visibility="invisible"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintTop_toTopOf="@+id/tvPriceDetail" />
+        <Constraint
+            android:id="@+id/btn_decrease_quantity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/tv_quantity"
+            motion:layout_constraintVertical_bias="0.666"
+            android:layout_marginStart="44dp"
+            motion:layout_constraintTop_toTopOf="@+id/tv_quantity"
+            motion:layout_constraintStart_toStartOf="@+id/btnAddToCart"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/btn_increase_quantity"
+            motion:layout_constraintEnd_toEndOf="@+id/btnAddToCart"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/tv_quantity"
+            motion:layout_constraintVertical_bias="1.0"
+            android:layout_marginEnd="44dp"
+            motion:layout_constraintTop_toTopOf="@+id/tv_quantity"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/btn_increase_quantity"
+            motion:layout_constraintEnd_toEndOf="@+id/btnAddToCart"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/tv_quantity"
+            motion:layout_constraintVertical_bias="1.0"
+            android:visibility="invisible"
+            android:layout_marginEnd="44dp"
+            motion:layout_constraintTop_toTopOf="@+id/tv_quantity" />
+        <Constraint
+            android:id="@+id/tv_quantity"
+            motion:layout_constraintEnd_toEndOf="@+id/tvPriceDetail"
+            android:layout_width="12dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="40dp"
+            motion:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
+            motion:layout_constraintStart_toStartOf="@+id/tvPriceDetail"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/tv_quantity"
+            motion:layout_constraintEnd_toEndOf="@+id/tvPriceDetail"
+            android:layout_width="12dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="40dp"
+            motion:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
+            android:visibility="invisible"
+            motion:layout_constraintStart_toStartOf="@+id/tvPriceDetail" />
+    </ConstraintSet>
+</MotionScene>
