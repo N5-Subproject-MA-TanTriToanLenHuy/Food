@@ -27,7 +27,7 @@ import java.util.LinkedList;
 
 public class Screen_CartList extends AppCompatActivity {
 
-    private Button bt_back;
+    private Button bt_back, btn_checkout;
     private RecyclerView rv_cart;
     private CartAdapter cartAdapter;
     private TextView tvTotal;
@@ -53,16 +53,21 @@ public class Screen_CartList extends AppCompatActivity {
             }
         });
 
+        btn_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Screen_CartList.this, Screen_Checkout.class));
+                finish();
+            }
+        });
 
     }
-
-
-
 
     private void initView() {
         rv_cart = findViewById(R.id.rv_cart);
         bt_back = findViewById(R.id.btn_back);
         tvTotal =  findViewById(R.id.tv_total);
+        btn_checkout = findViewById(R.id.btn_checkout);
     }
 
     private void cart() {
@@ -86,10 +91,7 @@ public class Screen_CartList extends AppCompatActivity {
                     }
                 }
 
-
                 tvTotal.setText(String.valueOf(grardTotal(myCarts)) + " $");
-
-
 
                 cartAdapter = new CartAdapter(myCarts, Screen_CartList.this, Screen_CartList.this);
                 rv_cart.setAdapter(cartAdapter);
