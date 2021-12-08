@@ -18,9 +18,4 @@ public interface APICall {
             "Content-Type: application/x-www-form-urlencoded",
     })
     Call<ResponseBody> userLogin(@Field("username") String username, @Field("password") String password);
-
-    @FormUrlEncoded
-    @POST("/auth/register")
-    Call<ResponseBody> userRegister(@Field("username") String username, @Field("password") String password,
-                                    @Field("role") Set<String> role);
 }

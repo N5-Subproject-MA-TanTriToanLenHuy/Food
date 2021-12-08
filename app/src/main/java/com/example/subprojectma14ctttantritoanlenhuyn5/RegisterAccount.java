@@ -7,38 +7,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.subprojectma14ctttantritoanlenhuyn5.model.JWTToken;
-import com.example.subprojectma14ctttantritoanlenhuyn5.remote.APICall;
-import com.example.subprojectma14ctttantritoanlenhuyn5.remote.RetroClass;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class RegisterAccount extends AppCompatActivity implements View.OnClickListener {
 
@@ -65,7 +50,7 @@ public class RegisterAccount extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tvLogin:
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
@@ -78,34 +63,57 @@ public class RegisterAccount extends AppCompatActivity implements View.OnClickLi
 
     private void register() {
 
-        if(!edtPassConfirm.getText().toString().matches(edtPassword.getText().toString())){
+        if (!edtPassConfirm.getText().toString().matches(edtPassword.getText().toString())) {
             Toast.makeText(this, "Password Confirm is not match", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        final APICall apiCall = RetroClass.getAPICall();
+        JSONObject js = new JSONObject();
 
         Set<String> role = new HashSet<>();
         role.add("ADMIN");
         role.add("USER");
 
-        final String username = edtUsernme.getText().toString();
-        final String password = edtPassword.getText().toString();
+        try {
+            js.put("username", edtUsernme.getText().toString());
+            js.put("password", edtPassConfirm.getText().toString());
+            js.put("role", role);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        Call<ResponseBody> jwtTokenCall = apiCall.userRegister(username, password, role);
+        String url = "https://n5-apigateway-food.herokuapp.com/auth/register";
+        // Make request for JSONObject
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST, url, js,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", response.toString());
 
-        jwtTokenCall.enqueue(new Callback<ResponseBody>() {
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                Toast.makeText(RegisterAccount.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("TAG", "Error: " + error.getMessage());
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
             }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(RegisterAccount.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                VolleyLog.d("TAG", "Error: " + t.getMessage());
-            }
-        });
+        };
+
+        // Adding request to request queue
+        Volley.newRequestQueue(this).add(jsonObjReq);
+//        startActivity(new Intent(RegisterAccount.this, MainActivity.class));
 
     }
 }
