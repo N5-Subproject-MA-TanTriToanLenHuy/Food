@@ -3,7 +3,9 @@ package com.example.subprojectma14ctttantritoanlenhuyn5;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -34,7 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private GoogleSignInClient mGoogleSignInClient;
     private TextView tvUsername, tvPassword;
     private Retrofit retrofit;
+    private Context context;
+
     public static final String BASE_URL = "https://n5-apigateway-food.herokuapp.com/";
+    public static final String MY_PREFRENCE = "myPrefs";
+    public static final String TOKEN = "myToken";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,9 +107,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (response.isSuccessful()) {
                     User data = response.body();
-                    String Dname = data.getUsername();
+                    String name = data.getUsername();
                     String token = data.getToken();
-                    Toast.makeText(MainActivity.this, token.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFRENCE, context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(TOKEN, token);
+                    editor.putString("name", name);
+                    editor.apply();
+
+                    startActivity(new Intent(MainActivity.this, Screen_Home.class));
+                    finish();
                 }else {
                     Toast.makeText(MainActivity.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
                 }

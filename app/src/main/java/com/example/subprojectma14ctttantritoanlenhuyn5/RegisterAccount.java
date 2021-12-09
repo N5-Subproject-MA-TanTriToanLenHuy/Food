@@ -79,7 +79,6 @@ public class RegisterAccount extends AppCompatActivity implements View.OnClickLi
         }
 
         Set<String> role = new HashSet<>();
-        role.add("ADMIN");
         role.add("USER");
 
         build();

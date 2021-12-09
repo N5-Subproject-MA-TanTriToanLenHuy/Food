@@ -2,11 +2,11 @@ package com.example.subprojectma14ctttantritoanlenhuyn5.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +32,12 @@ public class ProfileFragment extends Fragment {
 
     private GoogleSignInClient mGoogleSignInClient;
     private TextView tvNameAccount;
+    private SharedPreferences sharedPreferences;
+    private String str;
+
+    public static final String MY_PREFRENCE = "myPrefs";
+    public static final String TOKEN = "myToken";
+    public static final String NAME = "name";
 
     @Nullable
     @Override
@@ -40,6 +46,12 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.profile_fragment, container, false);
 
         tvNameAccount = view.findViewById(R.id.tvNameAccount);
+
+        sharedPreferences = this.getActivity().getSharedPreferences(MY_PREFRENCE, Context.MODE_PRIVATE);
+        str = sharedPreferences.getString(NAME, "");
+        if(str != null){
+            tvNameAccount.setText(str);
+        }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -93,6 +105,14 @@ public class ProfileFragment extends Fragment {
     }
 
     private void signOut() {
+        if(str != null){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
+            return;
+        }
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
                     @Override
