@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.d("TAG", t.getMessage());
-
+                Toast.makeText(MainActivity.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
             }
         });
     }

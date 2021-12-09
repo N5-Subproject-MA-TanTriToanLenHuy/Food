@@ -11,11 +11,13 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.subprojectma14ctttantritoanlenhuyn5.model.User;
+import com.example.subprojectma14ctttantritoanlenhuyn5.model.UserCreate;
+import com.example.subprojectma14ctttantritoanlenhuyn5.remote.APICall;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,9 +27,17 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RegisterAccount extends AppCompatActivity implements View.OnClickListener {
 
-    EditText edtUsernme, edtPassword, edtPassConfirm;
+    private EditText edtUsernme, edtPassword, edtPassConfirm;
+    private Retrofit retrofit;
+    public static final String BASE_URL = "https://n5-apigateway-food.herokuapp.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,52 +78,44 @@ public class RegisterAccount extends AppCompatActivity implements View.OnClickLi
             return;
         }
 
-        JSONObject js = new JSONObject();
-
         Set<String> role = new HashSet<>();
         role.add("ADMIN");
         role.add("USER");
 
-        try {
-            js.put("username", edtUsernme.getText().toString());
-            js.put("password", edtPassConfirm.getText().toString());
-            js.put("role", role);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        build();
+        APICall apiCall = retrofit.create(APICall.class);
 
-        String url = "https://n5-apigateway-food.herokuapp.com/auth/register";
-        // Make request for JSONObject
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                Request.Method.POST, url, js,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("TAG", response.toString());
+        String username = edtUsernme.getText().toString();
+        String password = edtPassConfirm.getText().toString();
 
-                    }
-                }, new Response.ErrorListener() {
+        UserCreate user = new UserCreate(username, password, role);
+
+        Call<UserCreate> call = apiCall.userSignUp(user);
+
+        call.enqueue(new Callback<UserCreate>(){
             @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("TAG", "Error: " + error.getMessage());
-            }
-        }) {
+            public void onResponse(Call<UserCreate> call, Response<UserCreate> response) {
 
-            /**
-             * Passing some request headers
-             */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                return headers;
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegisterAccount.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterAccount.this, MainActivity.class));
+                    finish();
+                }
             }
 
-        };
+            @Override
+            public void onFailure(Call<UserCreate> call, Throwable t) {
+                Toast.makeText(RegisterAccount.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
+                Log.d("TAG", t.getMessage());
 
-        // Adding request to request queue
-        Volley.newRequestQueue(this).add(jsonObjReq);
-//        startActivity(new Intent(RegisterAccount.this, MainActivity.class));
+            }
+        });
+    }
 
+    private void build() {
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 }
