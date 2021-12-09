@@ -100,14 +100,14 @@ public class RegisterAccount extends AppCompatActivity implements View.OnClickLi
                     Toast.makeText(RegisterAccount.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterAccount.this, MainActivity.class));
                     finish();
+                }else {
+                    Toast.makeText(RegisterAccount.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<UserCreate> call, Throwable t) {
-                Toast.makeText(RegisterAccount.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
                 Log.d("TAG", t.getMessage());
-
             }
         });
     }

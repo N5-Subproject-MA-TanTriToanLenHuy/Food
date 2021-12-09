@@ -100,18 +100,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call<User> call, Response<User> response) {
 
                 if (response.isSuccessful()) {
-
                     User data = response.body();
                     String Dname = data.getUsername();
                     String token = data.getToken();
                     Toast.makeText(MainActivity.this, token.toString(), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(MainActivity.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.d("TAG", t.getMessage());
-                Toast.makeText(MainActivity.this, "Invalid username or password, please try again", Toast.LENGTH_SHORT).show();
             }
         });
     }
