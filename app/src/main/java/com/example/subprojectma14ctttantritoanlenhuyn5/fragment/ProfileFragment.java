@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment {
             tvNameAccount.setText(acct.getDisplayName());
         }
 
-        registerForContextMenu(view.findViewById(R.id.tvNameAccount));
+        registerForContextMenu(view.findViewById(R.id.photo));
 
         return view;
     }
