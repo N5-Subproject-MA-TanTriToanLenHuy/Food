@@ -7,34 +7,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.subprojectma14ctttantritoanlenhuyn5.model.JWTToken;
+import com.example.subprojectma14ctttantritoanlenhuyn5.model.User;
 import com.example.subprojectma14ctttantritoanlenhuyn5.remote.APICall;
-import com.example.subprojectma14ctttantritoanlenhuyn5.remote.RetroClass;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
     private TextView tvUsername, tvPassword;
+    private Retrofit retrofit;
+    public static final String BASE_URL = "https://n5-apigateway-food.herokuapp.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,36 +85,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void loginJWT() {
+        build();
+        APICall apiCall = retrofit.create(APICall.class);
 
-        final APICall apiCall = RetroClass.getAPICall();
+        String username = tvUsername.getText().toString();
+        String password = tvPassword.getText().toString();
 
-        final String username = tvUsername.getText().toString();
-        final String password = tvPassword.getText().toString();
+        User user = new User(username, password);
 
-        Call<ResponseBody> jwtTokenCall = apiCall.userLogin(username, password);
+        Call<User> call = apiCall.userLogin(user);
 
-        jwtTokenCall.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<User>(){
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                if(response.isSuccessful()){
-                    try {
-                        String rJson = response.body().string();
-                        Gson gson = new Gson();
-                        JWTToken jwtToken = gson.fromJson(rJson, JWTToken.class);
-                        Toast.makeText(MainActivity.this, jwtToken.getToken(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-//                }else {
-//                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-//                }
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if (response.isSuccessful()) {
+
+                    User data = response.body();
+                    String Dname = data.getUsername();
+                    String token = data.getToken();
+                    Toast.makeText(MainActivity.this, token.toString(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("TAG", t.getMessage());
+
             }
         });
+    }
+
+    private void build() {
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     @Override

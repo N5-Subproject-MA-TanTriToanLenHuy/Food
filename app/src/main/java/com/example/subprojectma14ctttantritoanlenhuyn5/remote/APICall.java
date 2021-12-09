@@ -1,21 +1,18 @@
 package com.example.subprojectma14ctttantritoanlenhuyn5.remote;
 
-import java.util.Set;
+import com.example.subprojectma14ctttantritoanlenhuyn5.model.User;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Headers;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface APICall {
 
-    @FormUrlEncoded
-    @POST("/auth/login")
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded",
-    })
-    Call<ResponseBody> userLogin(@Field("username") String username, @Field("password") String password);
+    @POST("auth/login")
+    Call<User> userLogin(@Body User user);
+
+//    @Headers({
+//            "Accept: application/json",
+//            "Content-Type: application/x-www-form-urlencoded",
+//    })
 }
