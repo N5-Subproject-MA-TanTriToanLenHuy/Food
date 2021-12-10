@@ -36,18 +36,23 @@
             android:name=".MapsActivity"
             android:exported="true"
             android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".Screen_CartList"
             android:exported="false" />
+
         <activity
             android:name=".Screen_Checkout"
             android:exported="true" />
+
         <activity
             android:name=".Screen_FoodDetail"
             android:exported="true" />
+
         <activity
             android:name=".Screen_Home"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
