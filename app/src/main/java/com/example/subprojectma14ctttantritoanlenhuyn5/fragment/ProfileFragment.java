@@ -105,14 +105,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void signOut() {
-        if(str != null){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.commit();
-            startActivity(new Intent(getActivity(), MainActivity.class));
-            getActivity().finish();
-            return;
-        }
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
                     @Override
