@@ -83,15 +83,16 @@ public class Screen_FoodDetail extends AppCompatActivity {
         btnDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( Integer.parseInt(tvQuantity.getText().toString()) <= 1){
+                if(Integer.parseInt(tvQuantity.getText().toString()) <= 1){
                     btnDecreaseQuantity.setVisibility(View.INVISIBLE);
-                }
-                count = Integer.parseInt(tvQuantity.getText().toString());
-                count--;
-                tvQuantity.setText(String.valueOf(count));
+                }else {
+                    count = Integer.parseInt(tvQuantity.getText().toString());
+                    count--;
+                    tvQuantity.setText(String.valueOf(count));
 
-                double p = (double) Math.round(price * count * 1000) / 1000;
-                tvPrice.setText(String.valueOf(p));
+                    double p = (double) Math.round(price * count * 1000) / 1000;
+                    tvPrice.setText(String.valueOf(p));
+                }
             }
         });
 
