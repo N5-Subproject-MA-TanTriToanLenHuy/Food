@@ -61,7 +61,10 @@ public class ProfileFragment extends Fragment {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this.getActivity());
         if (acct != null) {
-            Picasso.get().load(acct.getPhotoUrl()).into((ImageView) view.findViewById(R.id.photo));
+            if (acct.getPhotoUrl() != null)
+                Picasso.get().load(acct.getPhotoUrl()).into((ImageView) view.findViewById(R.id.photo));
+            else
+                Picasso.get().load(R.drawable.avt).into((ImageView) view.findViewById(R.id.photo));
             tvNameAccount.setText(acct.getDisplayName());
         }
 
