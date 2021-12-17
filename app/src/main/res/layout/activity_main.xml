@@ -126,7 +126,7 @@
         android:id="@+id/btnLogIn"
         android:layout_width="214dp"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_login"
         android:text="Log In"
         android:textAllCaps="false"
@@ -139,10 +139,10 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/btnLogIn"
         app:layout_constraintStart_toStartOf="@+id/btnLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
         app:srcCompat="@drawable/google" />
 
     <TextView
